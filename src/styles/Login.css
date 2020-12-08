@@ -1,0 +1,50 @@
+.login{
+    background-color: white;
+    position: absolute;
+    width: 510px;
+    height: 520px;
+    left: calc(50% - 510px/2);
+    top: calc(50% - 520px/2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.login__container{
+    max-width: 334px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo__header{
+    display: flex;
+    flex: 0 1 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form-logo{
+    flex: 1 1;
+}
+
+.form-logo__body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-logo__field{
+    margin-top: 20px;
+    height: 48px;
+    border-radius: 5px;
+}
+
+.form-logo__field:first-child{
+    margin-top: 0;
+}
+
+.form-logo__btn{
+    width: 176px;
+    height: 52px;
+    margin-top: 40px;
+}

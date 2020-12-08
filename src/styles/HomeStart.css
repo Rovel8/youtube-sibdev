@@ -1,0 +1,22 @@
+.home-start{
+    padding-top: 80px;
+}
+.home-start__container{
+    min-height: 60vh;
+    max-width: 686px;
+    margin: 0 auto;
+}
+
+.ant-input-search-button{
+    padding: 0 30px;
+}
+
+.home-start__title{
+    margin-top: 220px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.home-start__input{
+    
+}

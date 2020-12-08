@@ -1,0 +1,25 @@
+.home-video--grid{
+    margin-bottom: 12px;
+    
+}
+
+.home-video__text--grid{
+    display: flex;
+    flex-direction: column;
+    max-width: 312px;
+}
+
+.home-video__title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+} 
+
+.home-video__channel--grid{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(23, 23, 25, 0.3);
+    margin-top: 8px;
+}

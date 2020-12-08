@@ -1,0 +1,8 @@
+[1208/141542.777:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1208/155302.069:ERROR:process_info.cc(359)] UncheckedAllocate
+[1208/160243.149:ERROR:process_info.cc(359)] UncheckedAllocate
+[1208/160248.475:ERROR:process_info.cc(359)] UncheckedAllocate
+[1208/160248.639:ERROR:process_info.cc(359)] UncheckedAllocate
+[1208/181012.820:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1208/190140.111:ERROR:process_info.cc(359)] UncheckedAllocate
+[1208/202930.777:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)

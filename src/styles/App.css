@@ -1,0 +1,9 @@
+.app {
+  background: #FAFAFA;
+  min-height: 100vh;
+}
+.app__loader{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
