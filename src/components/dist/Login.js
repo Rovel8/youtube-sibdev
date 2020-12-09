@@ -58,19 +58,21 @@ function Login() {
         var login = _a.login, password = _a.password;
         return __awaiter(_this, void 0, void 0, function () {
             var signIn, error_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, firebase_config_1.auth.signInWithEmailAndPassword(login, password)];
                     case 1:
-                        signIn = _b.sent();
+                        signIn = _c.sent();
                         console.log(signIn);
+                        dispatch(login_reducer_1.setUid((_b = signIn.user) === null || _b === void 0 ? void 0 : _b.uid));
                         dispatch(login_reducer_1.logIn(true));
                         dispatch(login_reducer_1.initializeApp(true));
                         return [3 /*break*/, 3];
                     case 2:
-                        error_1 = _b.sent();
+                        error_1 = _c.sent();
                         console.error(error_1.message);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];

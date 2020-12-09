@@ -46,6 +46,10 @@ var react_router_dom_1 = require("react-router-dom");
 var icons_1 = require("@ant-design/icons");
 var HomeList_1 = require("./HomeList");
 var HomeGrid_1 = require("./HomeGrid");
+var SearchModal_1 = require("./SearchModal");
+// import { Field } from 'formik';
+var firebase_config_1 = require("../firebase/firebase-config");
+var firebase_1 = require("firebase");
 var Search = antd_1.Input.Search;
 function HomeResults() {
     var _this = this;
@@ -54,7 +58,9 @@ function HomeResults() {
     var query = react_redux_1.useSelector(function (state) { return state.search.query; });
     var totalResults = react_redux_1.useSelector(function (state) { return state.search.totalResults; });
     var videosTotal = react_redux_1.useSelector(function (state) { return state.search.videos; });
+    var uid = react_redux_1.useSelector(function (state) { return state.login.uid; });
     var _a = react_1.useState(false), grid = _a[0], setGrid = _a[1];
+    var _b = react_1.useState(false), isModalVisible = _b[0], setIsModalVisible = _b[1];
     var onSearch = function (value) { return __awaiter(_this, void 0, void 0, function () {
         var result, videos_1, error_1;
         return __generator(this, function (_a) {
@@ -88,10 +94,55 @@ function HomeResults() {
             }
         });
     }); };
+    var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, firebase_config_1.db.collection("users").doc("" + uid).set({
+                        favorites: firebase_1["default"].firestore.FieldValue.arrayUnion({
+                            query: query,
+                            maxResults: e.maxResults,
+                            sortBy: e.sortBy,
+                            label: e.label
+                        })
+                    }, { merge: true })];
+                case 1:
+                    _a.sent();
+                    console.log(e);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var initialvalues = {
+        query: "" + query,
+        label: '',
+        sortBy: 'rating',
+        maxResults: 0
+    };
+    var suffix = (react_1["default"].createElement(icons_1.HeartOutlined, { onClick: function () { return setIsModalVisible(true); }, style: {
+            fontSize: 20,
+            cursor: "pointer",
+            color: '#1890ff'
+        } }));
+    if (!query) {
+        return react_1["default"].createElement(react_router_dom_1.Redirect, { to: '/' });
+    }
     return (react_1["default"].createElement("main", { className: "home-results" },
         react_1["default"].createElement("div", { className: "home-results__container" },
+            react_1["default"].createElement(SearchModal_1["default"], { title: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441', initialvalues: initialvalues, isModalVisible: isModalVisible, setIsModalVisible: setIsModalVisible, handleSubmit: handleSubmit },
+                react_1["default"].createElement(antd_1.Form.Item, { label: '\u0417\u0430\u043F\u0440\u043E\u0441', name: 'query' },
+                    react_1["default"].createElement(antd_1.Input, { size: "large" })),
+                react_1["default"].createElement(antd_1.Form.Item, { label: '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435', rules: [{ required: true, message: 'Укажите название запроса' }], name: "label" },
+                    react_1["default"].createElement(antd_1.Input, { size: "large", name: "label", id: "label", placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435" })),
+                react_1["default"].createElement(antd_1.Form.Item, { label: '\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', name: 'sortBy' },
+                    react_1["default"].createElement(antd_1.Select, { size: "large" },
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "date" }, "\u0414\u0430\u0442\u0435"),
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "rating" }, "\u0420\u0435\u0439\u0442\u0438\u043D\u0433\u0443"),
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "relevance" }, "\u0420\u0435\u043B\u0435\u0432\u0430\u043D\u0442\u043D\u043E\u0441\u0442\u0438"),
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "title" }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u044E"),
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "videoCount" }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0432\u0438\u0434\u0435\u043E"),
+                        react_1["default"].createElement(antd_1.Select.Option, { value: "viewCount" }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u043E\u0432")))),
             react_1["default"].createElement("h2", { className: "home-result__title" }, "\u041F\u043E\u0438\u0441\u043A \u0432\u0438\u0434\u0435\u043E"),
-            react_1["default"].createElement(Search, { size: 'large', placeholder: "\u0427\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C?", onSearch: onSearch, enterButton: "\u041D\u0430\u0439\u0442\u0438" }),
+            react_1["default"].createElement(Search, { suffix: suffix, size: 'large', placeholder: "\u0427\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C?", onSearch: onSearch, enterButton: "\u041D\u0430\u0439\u0442\u0438" }),
             react_1["default"].createElement("div", { className: "home-results__results results-home" },
                 react_1["default"].createElement("section", { className: "results-home__header" },
                     react_1["default"].createElement("div", { className: "results-home__info" },
@@ -105,7 +156,7 @@ function HomeResults() {
                     react_1["default"].createElement("div", { className: "results-home__view" },
                         react_1["default"].createElement(icons_1.UnorderedListOutlined, { style: { cursor: "pointer" }, onClick: function () { return setGrid(false); } }),
                         react_1["default"].createElement(icons_1.AppstoreOutlined, { onClick: function () { return setGrid(true); }, style: { marginLeft: "18px", cursor: "pointer" } }))),
-                react_1["default"].createElement("section", { className: grid ? "results-home__body--grid" : "results-home__body" }, grid ? videosTotal.map(function (item) { return (react_1["default"].createElement(HomeGrid_1["default"], { channelTitle: item.channelTitle, coverUrl: item.coverUrl, videoTitle: item.videoTitle })); })
-                    : videosTotal.map(function (item) { return (react_1["default"].createElement(HomeList_1["default"], { channelTitle: item.channelTitle, coverUrl: item.coverUrl, videoTitle: item.videoTitle })); }))))));
+                react_1["default"].createElement("section", { className: grid ? "results-home__body--grid" : "results-home__body" }, grid ? videosTotal.map(function (item) { return (react_1["default"].createElement(HomeGrid_1["default"], { key: item.id, channelTitle: item.channelTitle, coverUrl: item.coverUrl, videoTitle: item.videoTitle })); })
+                    : videosTotal.map(function (item) { return (react_1["default"].createElement(HomeList_1["default"], { key: item.id, channelTitle: item.channelTitle, coverUrl: item.coverUrl, videoTitle: item.videoTitle })); }))))));
 }
 exports["default"] = HomeResults;

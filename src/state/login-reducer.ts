@@ -4,6 +4,7 @@ type InitilaStateT = {
     isLoggedIn: boolean
     isInitialized: boolean
     menu: string
+    uid: string
 }
 
 const loginSlice = createSlice({
@@ -17,6 +18,9 @@ const loginSlice = createSlice({
         logIn(state, action){
             state.isLoggedIn = action.payload
         },
+        setUid(state, action){
+            state.uid = action.payload
+        },
         initializeApp(state, action){
             state.isInitialized = action.payload
         },
@@ -26,6 +30,6 @@ const loginSlice = createSlice({
     }
 })
 
-export const {logIn, initializeApp, setMenu} = loginSlice.actions
+export const {logIn, initializeApp, setMenu, setUid} = loginSlice.actions
 
 export default loginSlice.reducer

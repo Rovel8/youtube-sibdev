@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import { useEffect } from 'react';
 import { auth } from './firebase/firebase-config'
-import {logIn, initializeApp} from './state/login-reducer'
+import {logIn, initializeApp, setUid} from './state/login-reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Spin } from 'antd'
 import { RootState } from './state/store';
@@ -19,10 +19,9 @@ function App() {
     auth.onAuthStateChanged((user) => {
       if(user){
         dispatch(logIn(true))
-        console.log(user)
+        dispatch(setUid(user.uid))
         dispatch(initializeApp(true))
       }else{
-        console.log('There is no user')
         dispatch(logIn(false))
         dispatch(initializeApp(true))
       }
@@ -33,8 +32,10 @@ function App() {
     <div className="app">
         {isInitialized ? (
           <>
-          <Route path="/" render={() => <Home />} />
-          <Route path="/login" render={() => <Login />} />
+          <Switch>
+            <Route path="/login" render={() => <Login />} />
+            <Route path="/" render={() => <Home />} />
+          </Switch>
           </>
         ) : <Spin className='app__loader' size='large' />}
     </div>

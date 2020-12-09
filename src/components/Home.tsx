@@ -3,7 +3,7 @@ import { auth } from '../firebase/firebase-config'
 import { useDispatch, useSelector } from 'react-redux'
 import {logIn, initializeApp, setMenu} from '../state/login-reducer'
 import { RootState } from '../state/store';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import {Typography} from 'antd'
 import Logo from '../assets/sibdev-logo.svg'
 import '../styles/Home.css'
@@ -19,8 +19,6 @@ function Home() {
     const selectedMenu = useSelector<RootState>(state => state.login.menu)
     const dispatch = useDispatch()
 
-    const history = useHistory()
-
     const setMenuBookmark = (value: string) => {
         if(value !== selectedMenu){
             const elem = document.getElementById(`${selectedMenu}`)
@@ -29,11 +27,6 @@ function Home() {
         dispatch(setMenu(value))
         const elem = document.getElementById(`${value}`)
         elem?.classList.add('active')
-        if(value === 'search'){
-            history.push('/')
-        }else{
-            history.push('favorites')
-        }
     }
 
     const logOut = async () => {
@@ -61,8 +54,8 @@ function Home() {
                 <div className="header-home__container">
                     <section className="header-home__entries">
                         <img className="header-home__img" src={Logo} alt="Logo"/>
-                        <span onClick={() => setMenuBookmark('search')} id="search" className="header-home__item">Поиск</span>
-                        <span onClick={() => setMenuBookmark('favorite')} id="favorite" className="header-home__item">Избранное</span>
+                        <span onClick={() => setMenuBookmark('search')} id="search" className="header-home__item"><NavLink to='/'>Поиск</NavLink> </span>
+                        <span onClick={() => setMenuBookmark('favorite')} id="favorite" className="header-home__item"><NavLink to='/favorites'>Избранное</NavLink></span> 
                     </section>
                     <section className="header-home__exit">
                         <span className="header-home__logout" onClick={() => logOut()}>Выйти</span>
@@ -70,9 +63,15 @@ function Home() {
                 </div>
             </header>
             <Switch>
-                <Route exact path='/search' render={() => <HomeResults />} />
-                <Route exact path='/favorites' rendrer={() => <Favorites />} />
-                <Route path='/' render={() => <HomeStart />} />
+                <Route path='/search'>
+                    <HomeResults />
+                </Route>
+                <Route path='/favorites'>
+                    <Favorites />
+                </Route>
+                <Route exact path='/'>
+                    <HomeStart />
+                </Route>
             </Switch>
         </div>
     )

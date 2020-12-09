@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Input, Button } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import { RootState } from '../state/store';
-import { logIn, initializeApp } from '../state/login-reducer'
+import { logIn, initializeApp, setUid } from '../state/login-reducer'
 import { Redirect } from 'react-router-dom';
 import { auth } from '../firebase/firebase-config'
 
@@ -30,6 +30,7 @@ function Login() {
     try {
       const signIn = await auth.signInWithEmailAndPassword(login, password)
       console.log(signIn)
+      dispatch(setUid(signIn.user?.uid))
       dispatch(logIn(true))
       dispatch(initializeApp(true))
     } catch (error) {

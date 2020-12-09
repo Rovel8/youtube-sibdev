@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 exports.__esModule = true;
-exports.setMenu = exports.initializeApp = exports.logIn = void 0;
+exports.setUid = exports.setMenu = exports.initializeApp = exports.logIn = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var loginSlice = toolkit_1.createSlice({
     name: 'login',
@@ -14,6 +14,9 @@ var loginSlice = toolkit_1.createSlice({
         logIn: function (state, action) {
             state.isLoggedIn = action.payload;
         },
+        setUid: function (state, action) {
+            state.uid = action.payload;
+        },
         initializeApp: function (state, action) {
             state.isInitialized = action.payload;
         },
@@ -22,5 +25,5 @@ var loginSlice = toolkit_1.createSlice({
         }
     }
 });
-exports.logIn = (_a = loginSlice.actions, _a.logIn), exports.initializeApp = _a.initializeApp, exports.setMenu = _a.setMenu;
+exports.logIn = (_a = loginSlice.actions, _a.logIn), exports.initializeApp = _a.initializeApp, exports.setMenu = _a.setMenu, exports.setUid = _a.setUid;
 exports["default"] = loginSlice.reducer;

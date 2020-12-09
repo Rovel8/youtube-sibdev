@@ -53,7 +53,6 @@ function Home() {
     var isLoggedIn = react_redux_1.useSelector(function (state) { return state.login.isLoggedIn; });
     var selectedMenu = react_redux_1.useSelector(function (state) { return state.login.menu; });
     var dispatch = react_redux_1.useDispatch();
-    var history = react_router_dom_1.useHistory();
     var setMenuBookmark = function (value) {
         if (value !== selectedMenu) {
             var elem_1 = document.getElementById("" + selectedMenu);
@@ -62,12 +61,6 @@ function Home() {
         dispatch(login_reducer_1.setMenu(value));
         var elem = document.getElementById("" + value);
         elem === null || elem === void 0 ? void 0 : elem.classList.add('active');
-        if (value === 'search') {
-            history.push('/');
-        }
-        else {
-            history.push('favorites');
-        }
     };
     var logOut = function () { return __awaiter(_this, void 0, void 0, function () {
         var error_1;
@@ -101,13 +94,19 @@ function Home() {
             react_1["default"].createElement("div", { className: "header-home__container" },
                 react_1["default"].createElement("section", { className: "header-home__entries" },
                     react_1["default"].createElement("img", { className: "header-home__img", src: sibdev_logo_svg_1["default"], alt: "Logo" }),
-                    react_1["default"].createElement("span", { onClick: function () { return setMenuBookmark('search'); }, id: "search", className: "header-home__item" }, "\u041F\u043E\u0438\u0441\u043A"),
-                    react_1["default"].createElement("span", { onClick: function () { return setMenuBookmark('favorite'); }, id: "favorite", className: "header-home__item" }, "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435")),
+                    react_1["default"].createElement("span", { onClick: function () { return setMenuBookmark('search'); }, id: "search", className: "header-home__item" },
+                        react_1["default"].createElement(react_router_dom_1.NavLink, { to: '/' }, "\u041F\u043E\u0438\u0441\u043A"),
+                        " "),
+                    react_1["default"].createElement("span", { onClick: function () { return setMenuBookmark('favorite'); }, id: "favorite", className: "header-home__item" },
+                        react_1["default"].createElement(react_router_dom_1.NavLink, { to: '/favorites' }, "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435"))),
                 react_1["default"].createElement("section", { className: "header-home__exit" },
                     react_1["default"].createElement("span", { className: "header-home__logout", onClick: function () { return logOut(); } }, "\u0412\u044B\u0439\u0442\u0438")))),
         react_1["default"].createElement(react_router_dom_1.Switch, null,
-            react_1["default"].createElement(react_router_dom_1.Route, { exact: true, path: '/search', render: function () { return react_1["default"].createElement(HomeResults_1["default"], null); } }),
-            react_1["default"].createElement(react_router_dom_1.Route, { exact: true, path: '/favorites', rendrer: function () { return react_1["default"].createElement(Favorites_1["default"], null); } }),
-            react_1["default"].createElement(react_router_dom_1.Route, { path: '/', render: function () { return react_1["default"].createElement(HomeStart_1["default"], null); } }))));
+            react_1["default"].createElement(react_router_dom_1.Route, { path: '/search' },
+                react_1["default"].createElement(HomeResults_1["default"], null)),
+            react_1["default"].createElement(react_router_dom_1.Route, { path: '/favorites' },
+                react_1["default"].createElement(Favorites_1["default"], null)),
+            react_1["default"].createElement(react_router_dom_1.Route, { exact: true, path: '/' },
+                react_1["default"].createElement(HomeStart_1["default"], null)))));
 }
 exports["default"] = Home;

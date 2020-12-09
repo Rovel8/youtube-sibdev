@@ -1,0 +1,62 @@
+.favoirtes{
+    padding-top: 80px;
+}
+
+.favorites__container{
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.favorites__title{
+    font-size: 28px;
+    line-height: 40px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 30px;
+    margin-top: 40px;
+}
+
+.favorites__list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-favorites{
+    background-color: white;
+    border-bottom: 1px solid #F1F1F1;
+    padding: 13px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-favorites:last-child{
+    border-bottom: none
+}
+
+.item-favorites__title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.item-favorites__option{
+    margin-right: 20px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 20px;
+    color: #000000;
+}
+
+.item-favorites__option--execute{
+    color: #1390E5;
+}
+
+.item-favorites__option--change{
+    color: #1390E5;
+}
+
+.item-favorites__option--delete{
+    color: red;
+}

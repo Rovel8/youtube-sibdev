@@ -17,18 +17,18 @@ function App() {
         firebase_config_1.auth.onAuthStateChanged(function (user) {
             if (user) {
                 dispatch(login_reducer_1.logIn(true));
-                console.log(user);
+                dispatch(login_reducer_1.setUid(user.uid));
                 dispatch(login_reducer_1.initializeApp(true));
             }
             else {
-                console.log('There is no user');
                 dispatch(login_reducer_1.logIn(false));
                 dispatch(login_reducer_1.initializeApp(true));
             }
         });
     }, []);
     return (React.createElement("div", { className: "app" }, isInitialized ? (React.createElement(React.Fragment, null,
-        React.createElement(react_router_dom_1.Route, { path: "/", render: function () { return React.createElement(Home_1["default"], null); } }),
-        React.createElement(react_router_dom_1.Route, { path: "/login", render: function () { return React.createElement(Login_1["default"], null); } }))) : React.createElement(antd_1.Spin, { className: 'app__loader', size: 'large' })));
+        React.createElement(react_router_dom_1.Switch, null,
+            React.createElement(react_router_dom_1.Route, { path: "/login", render: function () { return React.createElement(Login_1["default"], null); } }),
+            React.createElement(react_router_dom_1.Route, { path: "/", render: function () { return React.createElement(Home_1["default"], null); } })))) : React.createElement(antd_1.Spin, { className: 'app__loader', size: 'large' })));
 }
 exports["default"] = App;
