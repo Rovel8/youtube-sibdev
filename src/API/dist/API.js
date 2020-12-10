@@ -7,7 +7,7 @@ var instance = axios_1["default"].create({
 });
 exports.getVideos = function (query, order, maxResults) {
     if (order === void 0) { order = 'rating'; }
-    if (maxResults === void 0) { maxResults = 6; }
+    if (maxResults === void 0) { maxResults = 12; }
     var trimQuery = query.trim().toLocaleLowerCase();
     var regex = /\s/g;
     var queryWithoutWhitespaces = trimQuery.replace(regex, '+');

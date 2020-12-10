@@ -47,7 +47,6 @@ var icons_1 = require("@ant-design/icons");
 var HomeList_1 = require("./HomeList");
 var HomeGrid_1 = require("./HomeGrid");
 var SearchModal_1 = require("./SearchModal");
-// import { Field } from 'formik';
 var firebase_config_1 = require("../firebase/firebase-config");
 var firebase_1 = require("firebase");
 var Search = antd_1.Input.Search;
@@ -60,7 +59,6 @@ function HomeResults() {
     var videosTotal = react_redux_1.useSelector(function (state) { return state.search.videos; });
     var uid = react_redux_1.useSelector(function (state) { return state.login.uid; });
     var _a = react_1.useState(false), grid = _a[0], setGrid = _a[1];
-    var _b = react_1.useState(false), isModalVisible = _b[0], setIsModalVisible = _b[1];
     var onSearch = function (value) { return __awaiter(_this, void 0, void 0, function () {
         var result, videos_1, error_1;
         return __generator(this, function (_a) {
@@ -83,7 +81,6 @@ function HomeResults() {
                     });
                     dispatch(search_reducer_1.setVideos(videos_1));
                     dispatch(search_reducer_1.setQuery(value));
-                    console.log(result);
                     history.push('/search');
                     return [3 /*break*/, 3];
                 case 2:
@@ -95,30 +92,31 @@ function HomeResults() {
         });
     }); };
     var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
+        var error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, firebase_config_1.db.collection("users").doc("" + uid).set({
-                        favorites: firebase_1["default"].firestore.FieldValue.arrayUnion({
-                            query: query,
-                            maxResults: e.maxResults,
-                            sortBy: e.sortBy,
-                            label: e.label
-                        })
-                    }, { merge: true })];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, firebase_config_1.db.collection("users").doc("" + uid).set({
+                            favorites: firebase_1["default"].firestore.FieldValue.arrayUnion({
+                                query: query,
+                                maxResults: e.maxResults,
+                                sortBy: e.sortBy,
+                                label: e.label
+                            })
+                        }, { merge: true })];
                 case 1:
                     _a.sent();
-                    console.log(e);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     }); };
-    var initialvalues = {
-        query: "" + query,
-        label: '',
-        sortBy: 'rating',
-        maxResults: 0
-    };
-    var suffix = (react_1["default"].createElement(icons_1.HeartOutlined, { onClick: function () { return setIsModalVisible(true); }, style: {
+    var suffix = (react_1["default"].createElement(icons_1.HeartOutlined, { onClick: function () { return dispatch(search_reducer_1.setIsModalVisible(true)); }, style: {
             fontSize: 20,
             cursor: "pointer",
             color: '#1890ff'
@@ -128,12 +126,13 @@ function HomeResults() {
     }
     return (react_1["default"].createElement("main", { className: "home-results" },
         react_1["default"].createElement("div", { className: "home-results__container" },
-            react_1["default"].createElement(SearchModal_1["default"], { title: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441', initialvalues: initialvalues, isModalVisible: isModalVisible, setIsModalVisible: setIsModalVisible, handleSubmit: handleSubmit },
-                react_1["default"].createElement(antd_1.Form.Item, { label: '\u0417\u0430\u043F\u0440\u043E\u0441', name: 'query' },
-                    react_1["default"].createElement(antd_1.Input, { size: "large" })),
+            react_1["default"].createElement(SearchModal_1["default"], { title: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441', handleSubmit: handleSubmit },
+                react_1["default"].createElement("span", { style: { paddingBottom: '10px' } }, "\u0417\u0430\u043F\u0440\u043E\u0441"),
+                react_1["default"].createElement("br", null),
+                react_1["default"].createElement(antd_1.Input, { size: "large", value: query }),
                 react_1["default"].createElement(antd_1.Form.Item, { label: '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435', rules: [{ required: true, message: 'Укажите название запроса' }], name: "label" },
-                    react_1["default"].createElement(antd_1.Input, { size: "large", name: "label", id: "label", placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435" })),
-                react_1["default"].createElement(antd_1.Form.Item, { label: '\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', name: 'sortBy' },
+                    react_1["default"].createElement(antd_1.Input, { size: "large", name: "label", id: "label", placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043F\u0440\u043E\u0441\u0430" })),
+                react_1["default"].createElement(antd_1.Form.Item, { initialValue: "rating", label: '\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', name: 'sortBy' },
                     react_1["default"].createElement(antd_1.Select, { size: "large" },
                         react_1["default"].createElement(antd_1.Select.Option, { value: "date" }, "\u0414\u0430\u0442\u0435"),
                         react_1["default"].createElement(antd_1.Select.Option, { value: "rating" }, "\u0420\u0435\u0439\u0442\u0438\u043D\u0433\u0443"),

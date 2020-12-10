@@ -6,3 +6,22 @@
 [1208/181012.820:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
 [1208/190140.111:ERROR:process_info.cc(359)] UncheckedAllocate
 [1208/202930.777:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1209/192020.862:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1209/233016.716:ERROR:process_info.cc(359)] UncheckedAllocate
+[1209/233016.869:ERROR:process_reader_win.cc(188)] ResumeThread: Параметр задан неверно. (0x57)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.870:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1209/233016.871:ERROR:exception_snapshot_win.cc(99)] thread ID 10680 not found in process
+[1210/093045.694:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1210/191729.363:ERROR:process_info.cc(359)] UncheckedAllocate

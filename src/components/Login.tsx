@@ -14,8 +14,6 @@ function Login() {
   const isLoggedIn = useSelector<RootState>(state => state.login.isLoggedIn)
   const dispatch = useDispatch()
 
-  console.log('Login page')
-
   const initialValues = {
     login: '',
     password: ''
@@ -25,8 +23,8 @@ function Login() {
     login: string
     password: string
   }
-  
-  const onSubmit = async ({login, password}: IInitialValues) => {
+
+  const onSubmit = async ({ login, password }: IInitialValues) => {
     try {
       const signIn = await auth.signInWithEmailAndPassword(login, password)
       console.log(signIn)
@@ -38,7 +36,7 @@ function Login() {
     }
   }
 
-  if(isLoggedIn){
+  if (isLoggedIn) {
     return <Redirect to={'/'} />
   }
 
@@ -46,7 +44,7 @@ function Login() {
     <main className="login">
       <div className="login__container">
         <section className="logo__header">
-          <img className="logo__img" src={logo} alt="Logo"/>
+          <img className="logo__img" src={logo} alt="Logo" />
           <h1 className="logo__title">Вход</h1>
         </section>
         <section className="logo__form form-logo">
@@ -56,7 +54,7 @@ function Login() {
               <Field className="form-logo__field" as={Input.Password} name="password" id="password" placeholder="Пароль" />
               <Button htmlType="submit" type="primary" className="form-logo__btn">Войти</Button>
             </Form>
-          </Formik>  
+          </Formik>
         </section>
       </div>
     </main>

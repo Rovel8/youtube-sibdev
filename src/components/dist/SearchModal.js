@@ -1,22 +1,23 @@
 "use strict";
 exports.__esModule = true;
 var react_1 = require("react");
-// import { Formik, Form, Field } from 'formik';
 var antd_1 = require("antd");
 var antd_2 = require("antd");
-// Modal.setAppElement('#root')
-var customStyles = {};
+var search_reducer_1 = require("../state/search-reducer");
+var react_redux_1 = require("react-redux");
 var SearchModal = function (_a) {
-    var initialvalues = _a.initialvalues, handleSubmit = _a.handleSubmit, title = _a.title, isModalVisible = _a.isModalVisible, setIsModalVisible = _a.setIsModalVisible, children = _a.children;
+    var handleSubmit = _a.handleSubmit, title = _a.title, children = _a.children;
+    var isModalVisible = react_redux_1.useSelector(function (state) { return state.search.isModalVisible; });
     var _b = react_1.useState(1), results = _b[0], setResults = _b[1];
+    var dispatch = react_redux_1.useDispatch();
     var onChange = function (value) {
         setResults(value);
     };
     var handleOk = function () {
-        setIsModalVisible(false);
+        dispatch(search_reducer_1.setIsModalVisible(false));
     };
     var handleCancel = function () {
-        setIsModalVisible(false);
+        dispatch(search_reducer_1.setIsModalVisible(false));
     };
     var buttonStyles = {
         height: '52px',
@@ -25,7 +26,7 @@ var SearchModal = function (_a) {
     };
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(antd_1.Modal, { width: 510, title: title, footer: null, visible: isModalVisible, onOk: handleOk, onCancel: handleCancel },
-            react_1["default"].createElement(antd_2.Form, { layout: "vertical", name: 'Save', initialValues: initialvalues, onFinish: handleSubmit },
+            react_1["default"].createElement(antd_2.Form, { layout: "vertical", name: 'Save', onFinish: handleSubmit },
                 children,
                 react_1["default"].createElement(antd_1.Row, null,
                     react_1["default"].createElement("span", null, "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E")),

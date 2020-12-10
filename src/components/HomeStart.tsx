@@ -30,7 +30,6 @@ function HomeStart() {
             })
             dispatch(setVideos(videos))
             dispatch(setQuery(value))
-            console.log(result)
             history.push('/search')
         } catch (error) {
             console.error(error)

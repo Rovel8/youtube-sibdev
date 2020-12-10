@@ -12,7 +12,6 @@ var antd_1 = require("antd");
 function App() {
     var dispatch = react_redux_1.useDispatch();
     var isInitialized = react_redux_1.useSelector(function (state) { return state.login.isInitialized; });
-    var isLoggedIn = react_redux_1.useSelector(function (state) { return state.login.isLoggedIn; });
     react_1.useEffect(function () {
         firebase_config_1.auth.onAuthStateChanged(function (user) {
             if (user) {

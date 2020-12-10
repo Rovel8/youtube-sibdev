@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import { auth } from '../firebase/firebase-config'
 import { useDispatch, useSelector } from 'react-redux'
-import {logIn, initializeApp, setMenu} from '../state/login-reducer'
+import { logIn, initializeApp, setMenu } from '../state/login-reducer'
 import { RootState } from '../state/store';
-import { NavLink, Redirect, Route, Switch, useHistory } from 'react-router-dom';
-import {Typography} from 'antd'
+import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import Logo from '../assets/sibdev-logo.svg'
 import '../styles/Home.css'
 import HomeStart from './HomeStart';
 import HomeResults from './HomeResults';
 import Favorites from './Favorites';
 
-const {Text, Link} = Typography
 
 function Home() {
 
@@ -20,7 +18,7 @@ function Home() {
     const dispatch = useDispatch()
 
     const setMenuBookmark = (value: string) => {
-        if(value !== selectedMenu){
+        if (value !== selectedMenu) {
             const elem = document.getElementById(`${selectedMenu}`)
             elem?.classList.remove('active')
         }
@@ -37,14 +35,14 @@ function Home() {
         } catch (error) {
             console.error(error)
         }
-        
+
     }
 
     useEffect(() => {
         document.getElementById(`${selectedMenu}`)?.classList.add('active')
     }, [])
 
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
         return <Redirect to="/login" />
     }
 
@@ -53,9 +51,9 @@ function Home() {
             <header className="home__header header-home">
                 <div className="header-home__container">
                     <section className="header-home__entries">
-                        <img className="header-home__img" src={Logo} alt="Logo"/>
+                        <img className="header-home__img" src={Logo} alt="Logo" />
                         <span onClick={() => setMenuBookmark('search')} id="search" className="header-home__item"><NavLink to='/'>Поиск</NavLink> </span>
-                        <span onClick={() => setMenuBookmark('favorite')} id="favorite" className="header-home__item"><NavLink to='/favorites'>Избранное</NavLink></span> 
+                        <span onClick={() => setMenuBookmark('favorite')} id="favorite" className="header-home__item"><NavLink to='/favorites'>Избранное</NavLink></span>
                     </section>
                     <section className="header-home__exit">
                         <span className="header-home__logout" onClick={() => logOut()}>Выйти</span>

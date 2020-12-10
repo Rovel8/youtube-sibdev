@@ -70,7 +70,6 @@ function HomeStart() {
                     });
                     dispatch(search_reducer_1.setVideos(videos_1));
                     dispatch(search_reducer_1.setQuery(value));
-                    console.log(result);
                     history.push('/search');
                     return [3 /*break*/, 3];
                 case 2:

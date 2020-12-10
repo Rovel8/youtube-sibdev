@@ -15,21 +15,21 @@ const loginSlice = createSlice({
         menu: 'search'
     } as InitilaStateT,
     reducers: {
-        logIn(state, action){
+        logIn(state, action) {
             state.isLoggedIn = action.payload
         },
-        setUid(state, action){
+        setUid(state, action) {
             state.uid = action.payload
         },
-        initializeApp(state, action){
+        initializeApp(state, action) {
             state.isInitialized = action.payload
         },
-        setMenu(state, action){
+        setMenu(state, action) {
             state.menu = action.payload
         }
     }
 })
 
-export const {logIn, initializeApp, setMenu, setUid} = loginSlice.actions
+export const { logIn, initializeApp, setMenu, setUid } = loginSlice.actions
 
 export default loginSlice.reducer

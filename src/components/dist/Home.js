@@ -41,13 +41,11 @@ var firebase_config_1 = require("../firebase/firebase-config");
 var react_redux_1 = require("react-redux");
 var login_reducer_1 = require("../state/login-reducer");
 var react_router_dom_1 = require("react-router-dom");
-var antd_1 = require("antd");
 var sibdev_logo_svg_1 = require("../assets/sibdev-logo.svg");
 require("../styles/Home.css");
 var HomeStart_1 = require("./HomeStart");
 var HomeResults_1 = require("./HomeResults");
 var Favorites_1 = require("./Favorites");
-var Text = antd_1.Typography.Text, Link = antd_1.Typography.Link;
 function Home() {
     var _this = this;
     var isLoggedIn = react_redux_1.useSelector(function (state) { return state.login.isLoggedIn; });

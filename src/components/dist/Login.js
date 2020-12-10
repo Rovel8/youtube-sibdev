@@ -49,7 +49,6 @@ function Login() {
     var _this = this;
     var isLoggedIn = react_redux_1.useSelector(function (state) { return state.login.isLoggedIn; });
     var dispatch = react_redux_1.useDispatch();
-    console.log('Login page');
     var initialValues = {
         login: '',
         password: ''
